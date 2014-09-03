@@ -1,0 +1,6 @@
+include_rules
+
+PD_BEFORE += -B ../../utils/breadcrumb.html
+
+: index.md |> !pandoc |> %B.html
+: sumthing01.txt |> !ditaa |> %B.png

@@ -11,6 +11,7 @@
 ### Séptima Maratón
 
 * B: [Binary Search Tree](binary-search-tree/)
+* C: [Sumthing](sumthing/)
 
 ## Sobre este sitio
 
@@ -20,21 +21,21 @@ Este es un pequeño espacio dedicado a ejercitarnos en *upsolving*, usando las
 competencias de la [Red de Programación
 Competitiva](http://redprogramacioncompetitiva.org/).
 
-El término "upsolving" se usa con frecuencia en círculos<span n>o a veces
-cuadrados, o hasta hexágonos</span> de programación algorítmica (se encuentra
-mucho en los foros de [Codeforces](http://codeforces.com/), por ejemplo), y su
-significado puede interpretarse más o menos así:
+El término "upsolving" se usa con frecuencia en círculos<span n>y toda clase
+de polígonos</span> de programación algorítmica (se encuentra mucho en los
+foros de [Codeforces](http://codeforces.com/), por ejemplo), y su significado
+puede interpretarse más o menos así:
 
 > **upsolve**. v.
 >
-> 1. Resolver "de pa'rriba". Compárese con "rastrear de pa'trás" (backtrack).
+> 1. Resolver "de pa'rriba". Compárese con "rastrear de pa'trás" (*backtrack*).
 >
 > 2. Resolver **todos** los ejercicios de una competencia después de que ésta ha
 >    terminado, usualmente ayudándose de los editoriales publicados por los
 >    problem-setters (si los hay), o mediante el trabajo en equipo.
 >
 > 3. Tomar un problema que aun no se ha resuelto y estudiarlo detenidamente
->    hasta ser capaz de resolverlo, y explicar la estrategia usada a otros.
+>    hasta ser capaz de resolverlo, y explicar la estrategia usada a los demás.
 
 
 ### ¿Porqué?
@@ -52,18 +53,19 @@ nos podemos identificar.
 La programación algorítmica es un campo hermoso, lleno de experiencias
 enriquecedoras, en aspectos que van más allá de lo académico. ¿No es
 perfectamente natural querer compartir aquello que amamos con las personas
-a nuestro alrededor?
+a nuestro alrededor? Espero que este pequeño experimento sea de ayuda
+a aquellos que participan en competencias de programación porque lo han
+*elegido* de corazón.
 
-Espero que este pequeño experimento sea de ayuda a aquellos que participan en
-competencias de programación porque lo han *elegido* de corazón. Muchos
-maratonistas expertos<span n>citation needed</span> suelen dar la misma
+Muchos maratonistas expertos<span n>citation needed</span> suelen dar la misma
 respuesta cuando se les pregunta cómo llegaron a tener el nivel que tienen:
 *"Upsolving"*. Intentemos, pues, acercarnos a ellos imitando sus métodos.
 
 ### ¿Cómo?
 
-La idea es presentar explicaciones breves de los problemas, y luego un pequeño
-*screencast* de cómo escribo la solución.
+La idea es presentar explicaciones breves de los problemas, una pequeña
+discusión sobre la estrategia a utilizar, y luego un *screencast* que ilustre
+el proceso de escribir una solución.
 
 Este formato que he elegido es el resultado de mucha reflexión, y aunque los
 detalles detrás de mi decisión no son muy importantes, quiero resaltar que el
