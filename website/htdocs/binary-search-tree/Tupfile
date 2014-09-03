@@ -1,0 +1,8 @@
+include_rules
+
+PD_BEFORE += -B ../../utils/breadcrumb.html
+
+bst = bst01.dot bst02.dot bst03.dot bst04.dot bst05.dot
+
+: index.md |> !pandoc |> %B.html
+: foreach $(bst) |> !dot_bintree |> %B.png

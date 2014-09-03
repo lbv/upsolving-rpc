@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+  <style type="text/css">code{white-space: pre;}</style>
+$if(quotes)$
+  <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+  <style type="text/css">
+$highlighting-css$
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+
+$if(math)$
+  $math$
+$endif$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+
+
+<div class="container ups-main">
+$body$
+</div>
+<div class="ups-footer">
+  <p>$date$</p>
+  <p><a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a></p>
+</div>
+
+<script src="$url_jquery$"></script>
+<script src="$url_mathjax$"></script>
+<script src="$url_ups_js$"></script>
+
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+
+</body>
+</html>

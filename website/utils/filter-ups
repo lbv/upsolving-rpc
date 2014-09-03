@@ -1,0 +1,66 @@
+#! /usr/bin/env coffee
+
+
+filter = require 'pandoc-filter'
+
+
+hasFilterId = (id, val) ->
+	for pair in val[0][2]
+		return true if pair[0] is id
+	false
+
+makeNote = (val) ->
+	note = []
+	note.push filter.RawInline 'html', '<small>'
+	note.push filter.Str '❦'
+	note = note.concat val[1]
+	note.push filter.Str '❦'
+	note.push filter.RawInline 'html', '</small>'
+	note
+
+makePanel = (val) ->
+	title = []
+	title.push filter.RawBlock 'html', '<h3 class="panel-title">'
+	title.push filter.Plain val[1][0].c
+	title.push filter.RawBlock 'html', '</h3>'
+
+	title = filter.Div [ '', [ 'panel-heading' ], [] ], title
+
+	body = filter.Div [ '', [ 'panel-body' ], [] ], [ val[1][1] ]
+	panel = filter.Div [ '', [ 'panel', 'panel-default' ], [] ], [ title, body ]
+
+	panel
+
+makeAscii = (val) ->
+	title = []
+	title.push filter.RawBlock 'html', '<h3 class="panel-title">Screencast</h3>'
+	title = filter.Div [ '', [ 'panel-heading' ], [] ], title
+
+	top = filter.Div [ '', [ 'asciinema' ],
+		[ [ 'data-id', val[0][2][0][1] ] ] ], []
+	bottom = filter.Div [ '', [], [] ], val[1]
+	body = filter.Div [ '', [ 'panel-body', 'screencast' ], [] ],
+		[ top, bottom ]
+
+	panel = filter.Div [ '', [ 'panel', 'panel-info' ], [] ], [ title, body ]
+	panel
+
+action = (type, val, format, meta) ->
+	###
+	if type is 'Div' or type is 'Span' or type is 'RawInline'
+		console.error JSON.stringify arguments, null, '  '
+	###
+
+	if type is 'Span' and hasFilterId 'n', val
+		return makeNote val
+
+	if type is 'Div' and hasFilterId 'p', val
+		return makePanel val
+
+	if type is 'Div' and hasFilterId 'ascii', val
+		return makeAscii val
+
+	undefined
+
+
+filter.stdio action

@@ -1,0 +1,3 @@
+PD_CSS += -c $(TUP_CWD)/_styles/theme.css
+PD_CSS += -c $(TUP_CWD)/_styles/main.css
+PD_VARS += -V url_ups_js:$(TUP_CWD)/_scripts/ups.js

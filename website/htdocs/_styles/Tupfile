@@ -1,0 +1,7 @@
+include_rules
+
+LESS_VARS += --modify-var="bootstrap_path='$(TUP_CWD)/../../../../bower_components/bootstrap'"
+
+styles = main.less theme.less
+
+: foreach $(styles) | ../<bower> |> !lessc |> %B.css

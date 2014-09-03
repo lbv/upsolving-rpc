@@ -1,0 +1,7 @@
+include_rules
+
+ifndef PROD
+: |> ln -s ../../../bower_components _bower |> _bower
+endif
+
+: index.md |> !pandoc |> index.html

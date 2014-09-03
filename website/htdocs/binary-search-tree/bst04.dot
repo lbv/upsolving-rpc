@@ -1,0 +1,11 @@
+digraph G {
+  edge[color="gray33"]
+  graph[size=3, bgcolor="transparent"]
+
+  4 -> 3
+  4 -> 5
+
+  4[label=<4 (<FONT COLOR="blue">1</FONT> * 0.2)>]
+  3[label=<3 (<FONT COLOR="blue">2</FONT> * 0.1)>]
+  5[label=<5 (<FONT COLOR="blue">2</FONT> * 0.05)>]
+}

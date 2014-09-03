@@ -1,0 +1,26 @@
+@bootstrap_path: "../../../bower_components/bootstrap";
+
+@import (reference) "@{bootstrap_path}/less/bootstrap.less";
+
+
+.ups-main > h1 {
+	&:extend(.page-header);
+}
+
+figure img {
+	&:extend(.img-responsive, .img-rounded);
+}
+
+.jumbotron { margin-top: 8px; }
+
+.ups-footer {
+	background-color: #f9f9f9;
+	border-top: 1px solid #e5e5e5;
+	color: #999;
+	margin: 16px 0 0 0;
+	padding: 8px 0;
+	text-align: center;
+	width: 100%;
+
+	p:last-child { margin-bottom: 0; }
+}

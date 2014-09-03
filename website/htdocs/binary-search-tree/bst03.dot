@@ -1,0 +1,9 @@
+digraph G {
+  edge[color="gray33"]
+  graph[size=3, bgcolor="transparent"]
+
+  2 -> 1
+  2 -> 4
+  4 -> 3
+  4 -> 5
+}

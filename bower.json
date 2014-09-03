@@ -1,0 +1,21 @@
+{
+  "name": "upsolving-rpc",
+  "version": "0.0.0",
+  "authors": [
+    "Leonardo B <leonardo@diptongonante.com>"
+  ],
+  "license": "CC0-1.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "1.11.1",
+    "MathJax": "~2.4.0",
+    "bootstrap": "3.2.0"
+  }
+}

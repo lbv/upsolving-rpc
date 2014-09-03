@@ -1,0 +1,14 @@
+digraph G {
+  edge[color="gray33"]
+  graph[size=3.5, bgcolor="transparent"]
+
+  3 -> 2
+  3 -> 5
+  2 -> 1
+  2 -> i2[style="invis"]
+  5 -> 4
+  5 -> i5[style="invis"]
+
+  i2[style="invis"]
+  i5[style="invis"]
+}
