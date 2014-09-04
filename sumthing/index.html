@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Sumthing</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Slab">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../_styles/theme.css">
+  <link rel="stylesheet" href="../_styles/main.css">
+
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="../">Upsolving</a></li>
+</ol>
+
+
+<div class="container ups-main">
+<h1 id="sumthing">Sumthing</h1>
+<p><a href="http://redprogramacioncompetitiva.com/forum/viewforum.php?f=756">Foro de discusión</a>.</p>
+<h2 id="problema">Problema</h2>
+<p>Se nos pide calcular cierta suma que parece un poco peluda<small>❦y quizás un poco barbuda❦</small>.</p>
+<p>En realidad, lo cosa no está tan mal como puede parecer de entrada. Luego de un buen rato de estar mirando esas sumatorias anidadas, la función <span class="math">\(S(k)\)</span> se puede traducir a:</p>
+<blockquote>
+<p><span class="math">\(2^{k-1}\)</span> por la suma de los productos de todos los subconjuntos de tamaño <span class="math">\(k\)</span>.</p>
+</blockquote>
+<p><em>Ejemplo:</em> <span class="math">\[
+A=(10, 20, 30, 40)
+\]</span></p>
+<p>La lista <span class="math">\(A\)</span> tiene 4 elementos, así que hay cuatro valores de <span class="math">\(S\)</span> por calcular: <span class="math">\[
+\begin{align*}
+\mathrm{S}(1) &amp;= 2^0 \times (10 + 20 + 30 + 40) = 100 \\
+\mathrm{S}(2) &amp;= 2^1 \times (10\cdot20 + 10\cdot30 + 10\cdot40 + 20\cdot30
++ 20\cdot40 + 30\cdot40) = 7000\\
+\mathrm{S}(3) &amp;= 2^2 \times (10\cdot20\cdot30 + 10\cdot20\cdot40
++ 10\cdot30\cdot40 + 20\cdot30\cdot40) = 2 \times 10^5 \\
+\mathrm{S}(4) &amp;= 2^3 \times 10\cdot20\cdot30\cdot40 = 1.92 \times 10^6
+\end{align*}
+\]</span></p>
+<p>Y el resultado de sumar todos esos <span class="math">\(S\)</span> es: <span class="math">\[
+\Phi = \sum_{k=1}^{n} \mathrm{S}(k) = 2127100
+\]</span></p>
+<h2 id="estrategia">Estrategia</h2>
+<p>No puedo evitar acordarme de un profesor que tuve, al que uno le llegaba a la oficina con algún problema matématico o de programación, y él sonreía, desocupaba el escritorio, sacaba una hoja y un lapicero, y comenzaba a charlarlos con uno. Qué tiempos aquellos…</p>
+<p>Ese tipo de sesiones en las que nos sentábamos a resolver algún problema solían seguir un patrón común. Uno le explicaba el problema a mi profesor, mientras él tomaba notas en la hoja. Cuando ya el problema estaba explicado, comomenzaba un ciclo: él empezaba diciendo algo como “bueno, comencemos desde el principio”, y procedía a re-escribir las mismas cosas que ya había escrito más arriba en la hoja. Y luego una pausa, tal vez una o dos sugerencias salían a flote. Y luego el ciclo volvía a repetirse. Después de cierto número de iteraciones podía que llegáramos a una respuesta, o al punto en el que mi profesor nos decía que tenía que salir, pero que lo siguiéramos discutiendo después (y así era… nadie tenía más interés en resolver el problema que mi profesor).</p>
+<p>A lo que voy con esta historia, es que una de las cosas que me quedó grabada en la memoria fue ver a mi profesor escribir y reescribir números correspondientes a los “cases base” de un problema, hasta que eventualmente dábamos con la perspectiva correcta. O como lo decía mi profesor, no era cuestión de mirar al problema de frente, sino como “de lado”, apretando los ojos un poquito. Y ahí es cuando el problema toma un aire de belleza que uno no le encontraba antes; ahí es cuando el problema se deja querer.</p>
+<p>Vamos a ver si lo que estoy diciendo resulta claro cuando explique la estrategia para este problema. Dijimos que la suma <em>parece</em> un poco peluda. Pero las apariencias pueden engañar…</p>
+<p>Vamos a los casos base. ¿Cómo luce <span class="math">\(\Phi\)</span> si tenemos una lista <span class="math">\(A\)</span> con un solo elementos (digamos, <span class="math">\(a\)</span>)? <span class="math">\[
+\Phi = a
+\]</span></p>
+<p>Bien, y podemos seguir haciendo esto con tras listas un poco más largas. Con listas de 2 o 3 elementos, la cosa luce así: <span class="math">\[
+\begin{align*}
+\Phi_1 &amp;= a \\
+\Phi_2 &amp;= a + b + 2ab \\
+\Phi_3 &amp;= a + b + c + 2ab +2ac +2bc + 4abc
+\end{align*}
+\]</span></p>
+<p>Y así podríamos seguir. Pero concentrémonos en estos tres casos. Uno podría aquí quedarse un buen rato mirando estas igualdades, tratando de encontrarle la cara amable. Eventualmente, la magia ocurre.</p>
+<p>La pregunta es, ¿qué se necesita para convertir a <span class="math">\(\Phi_1\)</span> en <span class="math">\(\Phi_2\)</span>? ¿y qué se necesita para convertir a <span class="math">\(\Phi_2\)</span> en <span class="math">\(\Phi_3\)</span>?</p>
+<p>¿Ya lo ve? Recuerde, mírelo de lado, y apriete los ojos un poquito<small>❦si los aprieta completamente ahí ya no ve nada❦</small>.</p>
+<p>Analicemos parte por parte la expresión para <span class="math">\(\Phi_2\)</span>:</p>
+<figure>
+<img src="sumthing01.png" />
+</figure>
+<p>¿Ahora se ve más claro? ¿Cómo describiría el término adicional (con el signo de interrogación)?</p>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">
+Ejercicio
+</h3>
+</div>
+<div class="panel-body">
+Pruebe que el mismo razonamiento de cómo transformar a <span class="math">\(\Phi_1\)</span> en <span class="math">\(\Phi_2\)</span> sirve para ir de <span class="math">\(\Phi_2\)</span> a <span class="math">\(\Phi_3\)</span>.
+</div>
+</div>
+<h2 id="solución">Solución</h2>
+<div class="panel panel-info">
+<div class="panel-heading">
+<h3 class="panel-title">Screencast</h3>
+</div>
+<div class="panel-body screencast">
+<div class="asciinema" data-id="11710">
+
+</div>
+<div>
+A mitad de camino me dí cuenta de que no necesitaba un arreglo para almacenar la lista <span class="math">\(A\)</span>.
+</div>
+</div>
+</div>
+</div>
+<div class="ups-footer">
+  <p>3 de Septiembre, 2014</p>
+  <p><a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a></p>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../_scripts/ups.js"></script>
+
+
+
+
+</body>
+</html>

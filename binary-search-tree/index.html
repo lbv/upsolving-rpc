@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Upsolving · Binary Search Tree</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Slab">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../_styles/theme.css">
+  <link rel="stylesheet" href="../_styles/main.css">
+
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<ol class="breadcrumb">
+  <li><a href="../">Upsolving</a></li>
+</ol>
+
+
+<div class="container ups-main">
+<h1 id="binary-search-tree">Binary Search Tree</h1>
+<p><a href="http://redprogramacioncompetitiva.com/forum/viewforum.php?f=755">Foro de discusión</a>.</p>
+<h2 id="problema">Problema</h2>
+<p>Tenemos una lista ordenada de <span class="math">\(N\)</span> elementos, que representan probabilidades de la ocurrencia de ciertos símbolos, en donde la suma de todos los valores es igual a 1.</p>
+<p>Se desea formar un árbol binario a partir de esa lista, minimizando el <em>costo esperado</em> de encontrar un símbolo en ese árbol. El costo de alcanzar un símbolo determinado es igual al nivel del nodo correspondiente (la raíz tiene costo 1, los hijos de la raíz tienen costo 2, los hijos de los hijos tienen costo 3, etc).</p>
+<p>Ejemplo: <span class="math">\[
+p = (0.20, 0.45, 0.10, 0.20, 0.05)
+\]</span></p>
+<p>Este es un caso en donde hay 5 símbolos. No se sabe cuáles son los símbolos (ladridos en lenguaje de perros), pero se sabe que ahí están en orden (el símbolo 1 es menor lexicográficamente que el símbolo 2, el 2 es menor que el 3, etc). Los números en esta lista son las probabilidades de que el símbolo correspondiente sea elegido al azar.</p>
+<p>Hay muchas formas de armar árboles binarios a partir de 5 símbolos. Por ejemplo:</p>
+<div class="container">
+<img src="bst01.png" /> <img src="bst02.png" /> <img src="bst03.png" />
+</div>
+<p>El último de estos grafos resulta ser el BST óptimo para este ejemplo. El <em>costo esperado</em> de búsqueda en este árbol se calcula multiplicando el valor <span class="math">\(p_i\)</span> por el costo de cada nodo, y sumando todos esos valores. <span class="math">\[
+C_E = (0.2 \times 2) + (0.45 \times 1) + (0.1 \times 3) + (0.2 \times 2) + (0.05
+\times 3) = 1.7
+\]</span></p>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">
+Ejercicio
+</h3>
+</div>
+<div class="panel-body">
+Verificar a mano con algunos otros árboles, que no es posible encontrar un BST con un costo esperado de búsqueda menor a <span class="math">\(1.7\)</span>.
+</div>
+</div>
+<h2 id="estrategia">Estrategia</h2>
+<p>Los árboles binarios tienen muchas propiedades maravillosas. Se prestan muy bien para aplicar métodos recursivos, y construir soluciones a problemas grandes a partir de problemas más pequeños.</p>
+<p>Tomemos el ejemplo anterior. Sabemos que el BST óptimo se forma con el nodo 2 en la raíz, y el nodo 4 a la derecha del 2. Ese sub-árbol con 4 como raíz puede verse como un sub-problema del problema más grande, en donde en lugar de considerar todo el rango <span class="math">\([1 : 5]\)</span> del arreglo, solo se considera el rango <span class="math">\([3 : 5]\)</span>. De hecho, la solución óptima para ese árbol con raíz 4 es: <span class="math">\[
+C_{E4} = (0.1 \times 2) + (0.2 \times 1) + (0.05 \times 2) = 0.5
+\]</span></p>
+<p>Obviaremos por ahora el detalle de que las probabilidades de este rango no suman 1. Lo importante es que la estrategia para resolver el sub-problema viene a ser la misma que para el problema grande.</p>
+<p>¿Puede ver para dónde va esto?<small>❦¿Roma?❦</small> Si está pensando «programación dinámica», estamos sintonizados. Si aun no está familiarizado con D.P., ahora sería un buen momento para leer un poco sobre el tema.</p>
+<p>Ahora, aquí está la que me parece la observación clave: para un rango arbitrario <span class="math">\([i:j]\)</span> del arreglo, es posible encontrar el sub-árbol óptimo, buscando una posición <span class="math">\(k\)</span> (<span class="math">\(i \le k \le j\)</span>), que minimize una suma que de alguna manera involucre a los valores <span class="math">\((R_{i,k-1}), (p_k), (R_{k+1, j})\)</span>, en donde <span class="math">\(R_{a,b}\)</span> denota la solución para el rango <span class="math">\([a:b]\)</span>.</p>
+<p>Veamos cómo; vamos de vuelta a nuestro ejemplo, y la solución para el sub-árbol del rango <span class="math">\([3:5]\)</span>:</p>
+<figure>
+<img src="bst04.png" />
+</figure>
+<p>Ahora veamos lo que sucede con ese sub-árbol cuando pasamos a la solución del problema más grande, del rango <span class="math">\([1:5]\)</span>:</p>
+<figure>
+<img src="bst05.png" />
+</figure>
+<p>¿Se ve el corazón del asunto?</p>
+<p>Hemos dicho que <span class="math">\(R_{a,b}\)</span> denota la solución del problema para el rango <span class="math">\([a:b]\)</span>, ahora denotemos como <span class="math">\(S_{a,b}\)</span> a la suma <span class="math">\(p_a, p_{a+1}, \ldots, p_{b}\)</span>. Entonces la solución para <span class="math">\(R_{i, j}\)</span>, viene de encontrar un <span class="math">\(k\)</span> que minimize la siguiente suma: <span class="math">\[
+(R_{i, k-1} + S_{i, k-1}) + p_k + (R_{k+1, j} + S_{k+1, j})
+\]</span></p>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">
+Pregunta
+</h3>
+</div>
+<div class="panel-body">
+¿Para qué los términos <span class="math">\(S\)</span>? ¿Qué tienen que ver con los árboles pintados más arriba? (pista: concéntrese en los números coloreados).
+</div>
+</div>
+<p>Esto se traduce fácilmente a una solución de programación dinámica. El caso base es considerar todos los rangos de longitud 1 (<span class="math">\(R_{i, i}\)</span> para cada <span class="math">\(i\)</span> de la lista) y su valor es simplemente <span class="math">\(p_i\)</span>, y luego se van calculando las respuestas para los rangos de longitud 2, de longitud 3, etc, hasta llegar al rango completo de longitud <span class="math">\(N\)</span>.</p>
+<h2 id="solución">Solución</h2>
+<div class="panel panel-info">
+<div class="panel-heading">
+<h3 class="panel-title">Screencast</h3>
+</div>
+<div class="panel-body screencast">
+<div class="asciinema" data-id="11709">
+
+</div>
+<div>
+Hacia el final, me quedé un buen rato buscando un bug que tenía que ver con la inicialización de una variable para el caso base.
+</div>
+</div>
+</div>
+</div>
+<div class="ups-footer">
+  <p>3 de Septiembre, 2014</p>
+  <p><a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0</a></p>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../_scripts/ups.js"></script>
+
+
+
+
+</body>
+</html>
