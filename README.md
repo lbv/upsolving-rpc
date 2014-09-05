@@ -26,8 +26,9 @@ gets curious or has some suggestions to improve my workflow.
 ## Setting up the environment
 
 1. Clone the repository.
-2. `npm install`.
-3. `bower install`.
+2. `npm install` (inside the project's root).
+3. `bower install` (inside the project's root).
+4. `tup init` (inside `website/`).
 
 ## Generating the website
 
@@ -48,11 +49,11 @@ To start the webserver and check the website locally: `npm start`.
 usual `git status; git add .; git push origin gh-pages`.
 
 *Explanation:* In my local working directory I have a copy of my repo's
-`gh-pages` branch under a directory called `gh-pages` (it's `.gitignore`d).
-Whenever I update my website with `tup`, the whole thing I want to publish is
-under `website/_build_prod/htdocs`. The `Makefile` contains a `sync` target to
-`rsync` between `website/_build_prod/htdocs` and `gh-pages`. Then I go into
-that directory and deploy.
+`gh-pages` branch under a directory called `gh-pages` (it's `.gitignore`d in
+the project's root). Whenever I update my website with `tup`, the whole thing
+I want to publish is under `website/_build_prod/htdocs`. The `Makefile`
+contains a `sync` target that uses `rsync` to update `gh-pages/`. Then I go
+into that directory and deploy.
 
 [bootstrap]: http://getbootstrap.com/
 [bower]: http://bower.io/
