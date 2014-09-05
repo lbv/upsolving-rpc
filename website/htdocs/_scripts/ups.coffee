@@ -28,6 +28,7 @@ setupScreencast = ->
 		$('.asciinema').append $(script)
 
 setupMath = ->
+	return unless MathJax?
 	MathJax.Hub.Config {
 		"HTML-CSS":
 			availableFonts: []
