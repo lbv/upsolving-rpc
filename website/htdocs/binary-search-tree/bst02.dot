@@ -1,6 +1,7 @@
 digraph G {
-  edge[color="gray33"]
   graph[size=3.5, bgcolor="transparent"]
+  edge[color="gray33"]
+  node[fontname="Source Sans Pro"]
 
   3 -> 2
   3 -> 5
