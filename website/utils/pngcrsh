@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+png="$1"
+
+if [[ ! -f "$png" ]]; then
+	echo "No png file at $png"
+	exit 1
+fi
+
+tmpdir=$(mktemp -d)
+tmpfile="${tmpdir}/aux.png"
+
+pngcrush $png $tmpfile
+mv -f $tmpfile $png
+rm -rf "$tmpdir"

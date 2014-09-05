@@ -11,7 +11,11 @@ PD_CSS += -c '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
 PD_VARS += -V url_jquery://code.jquery.com/jquery-1.11.0.min.js
 PD_VARS += -V url_mathjax://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
+PNGCRUSH = $(TUP_CWD)/utils/pngcrsh
+
 !coffee = |> coffee -c -p %f | uglifyjs > %o |>
+!ditaa = |> ditaa %f %o -s 0.9 && $(PNGCRUSH) %o |>
+!dot_bintree = |> dot %f | gvpr -c -f $(TREE_GV) | neato -n -Tpng -o%o && $(PNGCRUSH) %o|>
 !lessc = |> lessc $(LESS_VARS) -x %f %o |>
 
 else
@@ -22,6 +26,8 @@ PD_VARS += -V url_jquery:/_bower/jquery/dist/jquery.js
 PD_VARS += -V url_mathjax:/_bower/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 !coffee = |> coffee -c -p %f > %o |>
+!ditaa = |> ditaa %f %o -s 0.9 |>
+!dot_bintree = |> dot %f | gvpr -c -f $(TREE_GV) | neato -n -Tpng -o%o |>
 !lessc = |> lessc $(LESS_VARS) %f %o |>
 
 endif
@@ -35,6 +41,4 @@ PANDOC_OPT = $(PD_FORMAT) $(PD_FILTER) $(PD_TPL)
 TREE_GV = $(TUP_CWD)/utils/tree.gv
 
 
-!ditaa = |> ditaa %f %o -s 0.9 |>
-!dot_bintree = |> dot %f | gvpr -c -f $(TREE_GV) | neato -n -Tpng -o%o |>
 !pandoc = |> pandoc $(PANDOC_OPT) $(PD_BEFORE) $(PD_VARS) $(PD_CSS) -o %o %f |>
