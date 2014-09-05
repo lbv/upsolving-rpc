@@ -63,7 +63,7 @@ profesor).
 
 A lo que voy con esta historia, es que una de las cosas que me quedó grabada
 en la memoria fue ver a mi profesor escribir y reescribir números
-correspondientes a los "cases base" de un problema, hasta que eventualmente
+correspondientes a los "casos base" de un problema, hasta que eventualmente
 dábamos con la perspectiva correcta. O como lo decía mi profesor, no era
 cuestión de mirar al problema de frente, sino como "de lado", apretando los
 ojos un poquito. Y ahí es cuando el problema toma un aire de belleza que uno
