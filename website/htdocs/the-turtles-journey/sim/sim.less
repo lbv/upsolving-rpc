@@ -1,0 +1,32 @@
+@import "../../_styles/def.less";
+
+.reveal .slides {
+	button, textarea {
+		font-size: 0.6em;
+	}
+
+	pre {
+		padding: 8px;
+
+		strong { color: @color-red; }
+	}
+
+	table {
+		width: 100%;
+
+		th { text-align: center; }
+	}
+
+	.stack-block {
+		border: 1px solid #888;
+		padding: 8px;
+
+		.elem {
+			margin: 0 0.8em;
+			text-align: center;
+
+			.key { color: @color-blue; }
+			.val { color: @color-green; }
+		}
+	}
+}

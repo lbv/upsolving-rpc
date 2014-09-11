@@ -1,0 +1,8 @@
+include_rules
+
+PD_SIM_CSS += -c 'sim.css'
+
+: sim.less |> !lessc |> %B.css
+: sim.coffee |> !coffee |> %B.js
+
+: index.md |> !pandoc_sim |> %B.html

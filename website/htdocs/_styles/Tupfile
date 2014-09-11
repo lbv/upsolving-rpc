@@ -4,4 +4,4 @@ LESS_VARS += --modify-var="bootstrap_path='$(TUP_CWD)/../../../../bower_componen
 
 styles = main.less theme.less
 
-: foreach $(styles) | ../<bower> |> !lessc |> %B.css
+: foreach $(styles) |> !lessc |> %B.css

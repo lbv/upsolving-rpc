@@ -1,0 +1,5 @@
+include_rules
+
+PD_BEFORE += -B ../../utils/breadcrumb.html
+
+: index.md |> !pandoc |> %B.html

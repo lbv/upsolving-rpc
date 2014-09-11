@@ -8,8 +8,12 @@ PD_CSS += -c '//fonts.googleapis.com/css?family=Roboto+Slab'
 PD_CSS += -c '//fonts.googleapis.com/css?family=Inconsolata'
 PD_CSS += -c '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
 
+PD_SIM_CSS += -c '//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/reveal.min.css'
+PD_SIM_CSS += -c '//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/theme/simple.css'
+
 PD_VARS += -V url_jquery://code.jquery.com/jquery-1.11.0.min.js
 PD_VARS += -V url_mathjax://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+PD_VARS += -V url_reveal://cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/js/reveal.min.js
 
 PNGCRUSH = $(TUP_CWD)/utils/pngcrsh
 
@@ -22,8 +26,12 @@ else
 
 PD_CSS += -c '/_bower/bootstrap/dist/css/bootstrap.css'
 
+PD_SIM_CSS += -c '/_bower/reveal.js/css/reveal.css'
+PD_SIM_CSS += -c '/_bower/reveal.js/css/theme/simple.css'
+
 PD_VARS += -V url_jquery:/_bower/jquery/dist/jquery.js
 PD_VARS += -V url_mathjax:/_bower/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+PD_VARS += -V url_reveal:/_bower/reveal.js/js/reveal.js
 
 !coffee = |> coffee -c -p %f > %o |>
 !ditaa = |> ditaa %f %o -s 0.9 |>
@@ -35,10 +43,14 @@ endif
 
 PD_FILTER = -F $(TUP_CWD)/utils/filter-ups
 PD_FORMAT = --mathjax -t html5 -S -s
-PD_TPL = --template=$(TUP_CWD)/templates/tpl-main.htm
+PD_TPL = --template=$(TUP_CWD)/templates/main.htm
+PD_VARS += -V lang:es
 PANDOC_OPT = $(PD_FORMAT) $(PD_FILTER) $(PD_TPL)
+
+PD_SIM_OPT = --template=$(TUP_CWD)/templates/sim.htm
 
 TREE_GV = $(TUP_CWD)/utils/tree.gv
 
 
 !pandoc = |> pandoc $(PANDOC_OPT) $(PD_BEFORE) $(PD_VARS) $(PD_CSS) -o %o %f |>
+!pandoc_sim = |> pandoc $(PD_SIM_OPT) $(PD_VARS) $(PD_SIM_CSS) -o %o %f |>
