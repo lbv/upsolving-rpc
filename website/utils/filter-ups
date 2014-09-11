@@ -12,9 +12,9 @@ hasFilterId = (id, val) ->
 makeNote = (val) ->
 	note = []
 	note.push filter.RawInline 'html', '<small>'
-	note.push filter.Str '❦'
+	note.push filter.RawInline 'html', '<i class="fa fa-angle-left"></i> '
 	note = note.concat val[1]
-	note.push filter.Str '❦'
+	note.push filter.RawInline 'html', ' <i class="fa fa-angle-right"></i>'
 	note.push filter.RawInline 'html', '</small>'
 	note
 
@@ -47,7 +47,8 @@ makeAscii = (val) ->
 
 action = (type, val, format, meta) ->
 	###
-	if type is 'Div' or type is 'Span' or type is 'RawInline'
+	#if type is 'Div' or type is 'Span' or type is 'RawInline'
+	if type is 'Link' or type is 'Span'
 		console.error JSON.stringify arguments, null, '  '
 	###
 

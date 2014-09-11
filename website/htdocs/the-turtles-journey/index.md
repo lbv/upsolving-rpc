@@ -86,7 +86,8 @@ excusa perfecta para romper el hielo y familiarizarse con este tema.
 
 La siguiente simulación ilustra el proceso de análisis sintáctico (*parsing*)
 de un programa de MicroLogo, mostrando cómo se modifica la pila a medida que
-se leen los tokens: [Simulación](sim/).
+se leen los tokens: <a href="sim/" target="sim">Simulación
+<small><i class="fa fa-external-link"></i></small></a>.
 
 
 ## Solución

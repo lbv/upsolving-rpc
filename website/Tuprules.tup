@@ -7,6 +7,7 @@ PD_CSS += -c '//fonts.googleapis.com/css?family=Roboto'
 PD_CSS += -c '//fonts.googleapis.com/css?family=Roboto+Slab'
 PD_CSS += -c '//fonts.googleapis.com/css?family=Inconsolata'
 PD_CSS += -c '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'
+PD_CSS += -c '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
 
 PD_SIM_CSS += -c '//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/reveal.min.css'
 PD_SIM_CSS += -c '//cdnjs.cloudflare.com/ajax/libs/reveal.js/2.6.2/css/theme/simple.css'
@@ -25,6 +26,7 @@ PNGCRUSH = $(TUP_CWD)/utils/pngcrsh
 else
 
 PD_CSS += -c '/_bower/bootstrap/dist/css/bootstrap.css'
+PD_CSS += -c '/_bower/font-awesome/css/font-awesome.css'
 
 PD_SIM_CSS += -c '/_bower/reveal.js/css/reveal.css'
 PD_SIM_CSS += -c '/_bower/reveal.js/css/theme/simple.css'

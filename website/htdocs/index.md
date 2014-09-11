@@ -43,13 +43,14 @@ puede interpretarse más o menos así:
 
 Es curioso lo que hacemos los seres humanos cuando se trata de cosas que nos
 apasionan. El físico Neil deGrasse Tyson lo ilustra de una forma muy bonita,
-cuando [dice](https://www.youtube.com/watch?v=XGK84Poeynk): *"I know that the
-molecules in my body are traceable to phenomena in the cosmos. That makes me
-want to grab people on the street and say: «Have you heard this?»"*. Es claro
-que a él le apasionan asuntos relacionados con la naturaleza física del
-Universo, que no es necesariamente el tema central de este sitio, pero
-ciertamente manifiesta un nivel de entusiasmo con el que, creo, todos nosotros
-nos podemos identificar.
+cuando
+<a href="https://www.youtube.com/watch?v=XGK84Poeynk" target="_blank">dice <i
+class="fa fa-youtube"></i></a>: *"I know that the molecules in my body are
+traceable to phenomena in the cosmos. That makes me want to grab people on the
+street and say: «Have you heard this?»"*. Es claro que a él le apasionan
+asuntos relacionados con la naturaleza física del Universo, que no es
+necesariamente el tema central de este sitio, pero ciertamente manifiesta un
+nivel de entusiasmo con el que, creo, todos nosotros nos podemos identificar.
 
 La programación algorítmica es un campo hermoso, lleno de experiencias
 enriquecedoras, en aspectos que van más allá de lo académico. ¿No es

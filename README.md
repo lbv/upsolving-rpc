@@ -11,6 +11,7 @@ Some of the tools that I use to generate all of this:
   generating documents.
 * [Bootstrap][bootstrap] to provide a consistent look-and-feel without too
   much headaches.
+* [Font Awesome][font-awesome] for good-looking iconography.
 * [Less][less] for managing CSS styles.
 * [CoffeeScript][coffee] for coding client-side scripts, as well as custom
   tools for my working environment.
@@ -59,6 +60,7 @@ into that directory and deploy.
 [bower]: http://bower.io/
 [coffee]: http://coffeescript.org/
 [ditaa]: http://ditaa.sourceforge.net/
+[font-awesome]: http://fontawesome.io/
 [graphviz]: http://www.graphviz.org/
 [less]: http://lesscss.org/
 [node]: http://nodejs.org/
