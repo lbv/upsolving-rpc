@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Slab">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../_styles/theme.css">
   <link rel="stylesheet" href="../_styles/main.css">
 
@@ -54,7 +55,7 @@ Verificar a mano con algunos otros árboles, que no es posible encontrar un BST 
 C_{E4} = (0.1 \times 2) + (0.2 \times 1) + (0.05 \times 2) = 0.5
 \]</span></p>
 <p>Obviaremos por ahora el detalle de que las probabilidades de este rango no suman 1. Lo importante es que la estrategia para resolver el sub-problema viene a ser la misma que para el problema grande.</p>
-<p>¿Puede ver para dónde va esto?<small>❦¿Roma?❦</small> Si está pensando «programación dinámica», estamos sintonizados. Si aun no está familiarizado con D.P., ahora sería un buen momento para leer un poco sobre el tema.</p>
+<p>¿Puede ver para dónde va esto?<small><i class="fa fa-angle-left"></i> ¿Roma? <i class="fa fa-angle-right"></i></small> Si está pensando «programación dinámica», estamos sintonizados. Si aun no está familiarizado con D.P., ahora sería un buen momento para leer un poco sobre el tema.</p>
 <p>Ahora, aquí está la que me parece la observación clave: para un rango arbitrario <span class="math">\([i:j]\)</span> del arreglo, es posible encontrar el sub-árbol óptimo, buscando una posición <span class="math">\(k\)</span> (<span class="math">\(i \le k \le j\)</span>), que minimize una suma que de alguna manera involucre a los valores <span class="math">\((R_{i,k-1}), (p_k), (R_{k+1, j})\)</span>, en donde <span class="math">\(R_{a,b}\)</span> denota la solución para el rango <span class="math">\([a:b]\)</span>.</p>
 <p>Veamos cómo; vamos de vuelta a nuestro ejemplo, y la solución para el sub-árbol del rango <span class="math">\([3:5]\)</span>:</p>
 <figure>
