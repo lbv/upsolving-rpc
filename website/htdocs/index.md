@@ -1,6 +1,6 @@
 % Upsolving - RPC
 %
-% 3 de Septiembre, 2014
+% 11 de Septiembre, 2014
 
 <div class="jumbotron">
 # Upsolving <small>Red de Programación Competitiva</small>
